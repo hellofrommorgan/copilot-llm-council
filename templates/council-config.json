@@ -1,0 +1,129 @@
+{
+  "artifact_root": "./runs",
+  "mode": "peer",
+  "chairman": {
+    "model": "gpt-5.4",
+    "transport": "copilot_api",
+    "endpoint": "responses"
+  },
+  "review_fallbacks": {
+    "claude-opus-4.6": [
+      {
+        "model": "claude-opus-4.6-1m",
+        "transport": "copilot_cli",
+        "endpoint": "cli"
+      },
+      {
+        "model": "gpt-5.3-codex",
+        "transport": "copilot_api",
+        "endpoint": "responses"
+      }
+    ],
+    "gpt-5.4": [
+      {
+        "model": "claude-opus-4.6",
+        "transport": "copilot_api",
+        "endpoint": "chat_completions"
+      },
+      {
+        "model": "claude-opus-4.6-1m",
+        "transport": "copilot_cli",
+        "endpoint": "cli"
+      },
+      {
+        "model": "gpt-5.3-codex",
+        "transport": "copilot_api",
+        "endpoint": "responses"
+      }
+    ]
+  },
+  "generation": {
+    "max_output_tokens": 900,
+    "temperature": null,
+    "timeout_seconds": 600
+  },
+  "review": {
+    "max_output_tokens": 1200,
+    "temperature": 0,
+    "exclude_self": true,
+    "timeout_seconds": 600
+  },
+  "synthesis": {
+    "max_output_tokens": 4096,
+    "temperature": 0.2,
+    "timeout_seconds": 600
+  },
+  "review_card": {
+    "max_chars": 1800,
+    "max_paragraphs": 6
+  },
+  "retry": {
+    "max_attempts": 3,
+    "backoff_seconds": [
+      2,
+      6
+    ]
+  },
+  "rubric": [
+    "accuracy",
+    "completeness",
+    "reasoning",
+    "usefulness",
+    "clarity",
+    "uncertainty_calibration"
+  ],
+  "request_timeout_seconds": 600,
+  "random_seed": null,
+  "models": [
+    {
+      "model": "gpt-5.4",
+      "transport": "copilot_api",
+      "endpoint": "responses"
+    },
+    {
+      "model": "claude-opus-4.6",
+      "transport": "copilot_api",
+      "endpoint": "chat_completions"
+    },
+    {
+      "model": "claude-opus-4.6-1m",
+      "transport": "copilot_cli",
+      "endpoint": "cli",
+      "fallbacks": [
+        {
+          "model": "gpt-5.3-codex",
+          "transport": "copilot_api",
+          "endpoint": "responses"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "first_principles",
+      "label": "First principles",
+      "brief": "Re-derive from goals, constraints, incentives, and fundamentals. Challenge assumptions."
+    },
+    {
+      "id": "contrarian",
+      "label": "Contrarian",
+      "brief": "Find the strongest objections, failure modes, and hidden assumptions."
+    },
+    {
+      "id": "executor",
+      "label": "Executor",
+      "brief": "Turn ideas into practical sequencing, tradeoffs, and next actions."
+    }
+  ],
+  "runtime": {
+    "min_successful_seats": 3,
+    "continue_on_partial_failure": true
+  },
+  "summary": {
+    "max_chars": 12000,
+    "top_n": 5,
+    "max_list_items": 5,
+    "answer_chars": 4000,
+    "question_chars": 500
+  }
+}
